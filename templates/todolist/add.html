@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+
+  {% block title %}
+        Add Task 
+  {% endblock title %}
+
+
+
+    {% block content %}
+        <div class="flex flex-col items-center gap-10">
+
+            <!-- title  -->
+            <div>
+                <h2 class="text-5xl">Add Task </h2>
+            </div>
+
+            <!-- form -->
+            <form action="" method="POST" class="pt-10 gap-5  bg-gray-400 w-[400px] h-[250px] flex flex-col  justify-start items-center p-5 rounded-[7px]">
+                {% csrf_token %}
+            <div class="mb-4">
+                <label for="{{ form.name.id_for_label }}" class="p-5 pl-5 text-black font-bold mb-2">
+                    {{ form.name.label }}
+                </label>
+                {{ form.name }}
+                {{ form.name.errors }}
+            </div>
+
+            <!-- Is Done Checkbox Field -->
+            <div class="mb-4 flex items-center">
+                {{ form.is_done }}
+                <label for="{{ form.is_done.id_for_label }}" class="ml-2 text-white">
+                    {{ form.is_done.label }}
+                </label>
+                {{ form.is_done.errors }}
+            </div>
+
+                <button type="submit" class="w-[6.5rem] h-[2.5rem] bg-blue-600 rounded-[1.5rem] text-white">Save</button>
+            </form>
+
+
+        </div>
+
+    <a href="{% url 'home' %}" class="w-[50px] h-[30px] bg-red-500 text-white flex flex-col items-center text-center justify-center rounded-[3px]">Back</a>
+
+
+    {% endblock content %}

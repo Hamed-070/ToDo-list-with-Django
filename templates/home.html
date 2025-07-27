@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>
+    {% block title %}
+        ToDo list
+    {% endblock title %}
+          </title>
+</head>
+<body class="my-[100px] flex flex-col items-center gap-10">
+
+    
+    {% block content %}
+        
+    <!-- Header  --> 
+    <div class="container mx-auto h-[700px] w-[600px] bg-slate-300 rounded-[15px] flex flex-col items-center justify-center gap-[15px] bg-slate-600">
+
+        <div class="w-full h-1/4  text-center flex flex-col items-center justify-between pb-5 ">
+
+            <!-- Title : Task  -->
+            <div>
+                <h1 class="text-white text-5xl mt-5 ">Tasks</h1>
+            </div>
+
+            <!-- Compeleted and Uncompeleted Buttons  -->
+            <div class="flex flex-row gap-[20px]">
+                <a href="{% url 'home' %}" class="w-[5.5rem] h-[2.5rem] bg-blue-400 rounded-[1.5rem] text-white flex items-center justify-center ">All</a>
+                <a href="{% url 'compeleted_tasks' %}" class="w-[6.5rem] h-[2.5rem] bg-green-400 rounded-[1.5rem] flex items-center justify-center">Compeleted</a>
+                <a href="{% url 'pending_tasks' %}" class="w-[7.5rem] h-[2.5rem] bg-red-500 rounded-[1.5rem] text-white flex items-center justify-center">Uncompeleted</a>
+                
+            </div>
+
+        </div>
+        
+        <!-- Container   -->
+        <div class="flex flex-col justify-start pl-5 w-full h-3/4 bg-slate-300 rounded-b-[15px] gap-[10px] pr-5 pt-5 pb-5 overflow-y-auto">
+
+            {% for i in Tasks %}
+                
+                <div class="border-none rounded-[10px] bg-white min-h-[55px] pl-5 pr-5  flex flex-row items-center justify-between">
+
+                    
+
+                    {% if i.is_done %}
+
+                        <h2 class="truncate text-lg line-through">{{ i.name }}</h2>
+                        <div class="flex flex-row items-center justify-center gap-[5px] shrink-0">
+                            
+                            <a href="{% url 'update_task' i.id %}" class="w-[50px] h-[32px] bg-gray-400 rounded-[5px] text-white flex flex-col items-center text-center justify-center">Edit</a>
+                            <a href="{% url 'delete_task' i.id %}" class="w-[50px] h-[32px] bg-red-400 rounded-[5px] text-white text-white flex flex-col items-center text-center justify-center">Delete</a>
+                        
+                        </div>
+
+                    {% else %}    
+
+                        <h2 class="truncate text-lg">{{ i.name }}</h2>
+                        <div class="flex flex-row items-center justify-center gap-[5px] shrink-0">
+                            
+                            <a href="{% url 'update_task' i.id %}" class="w-[50px] h-[32px] bg-gray-400 rounded-[5px] text-white flex flex-col items-center text-center justify-center">Edit</a>
+                            <a href="{% url 'delete_task' i.id %}" class="w-[50px] h-[32px] bg-red-400 rounded-[5px] text-white text-white flex flex-col items-center text-center justify-center">Delete</a>
+                        
+                        </div>
+
+                    {% endif %}
+                        
+                    
+                    
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <!-- <button >Add Task</button> -->
+    <a href="{% url 'add_task' %}" class="w-[6.5rem] h-[2.5rem] bg-blue-600 rounded-[1.5rem] text-white text-center items-center flex flex-col justify-center ">Add Task</a>
+
+
+    {% endblock content %}
+        
+
+
+
+</body>
+</html>
