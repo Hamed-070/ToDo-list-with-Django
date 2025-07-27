@@ -16,7 +16,7 @@
 
 ## Installation 
   1. Clone the repo:  
-   `git clone https://github.com/username/repository.git`
+   `git clone https://github.com/Hamed-070/ToDo-list-with-Django.git`
 
   2. Create and activate a virtual environment:  
      `python -m venv venv`  
